@@ -17,25 +17,21 @@ const createTweetElement = function (object) {
 
   //choose appropriate
   if (monthsSince > 0) {
-    timeString = `Posted ${monthsSince} ago.`;
-    break;
-    if (daysSince > 0) {
-      timeString = `Posted ${daysSince} ago.`;
-      break;
-        if (hoursSince > 0) {
-        timeString = `Posted ${hoursSince} ago.`;
-        break;
-        if (minutesSince > 0) {
-          timeString = `Posted ${minutesSince} ago.`;
-          break;
-          if (secondsSince > 0) {
-            timeString = `Posted ${secondsSince} ago.`;
-            break;
-          }
-        }
-      }
-    }
+  timeString = `Posted ${monthsSince} ago.`;
+  } else
+  if (daysSince > 0) {
+  timeString = `Posted ${daysSince} ago.`;
+  } else
+  if (hoursSince > 0) {
+  timeString = `Posted ${hoursSince} ago.`;
+  } else
+  if (minutesSince > 0) {
+  timeString = `Posted ${minutesSince} ago.`;
+  } else
+  if (secondsSince > 0) {
+  timeString = `Posted ${secondsSince} ago.`;
   }
+        
   //construct the new tweet with imported values
   if (object) {
     fnArticle = `<section class="tweet">
