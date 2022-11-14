@@ -9,7 +9,7 @@ $(document).ready(function () {
   
   $("i.fa-flag").hover(function () {
     //handlerIn event
-    console.log("console log this: ", this)
+    console.log("hover trigger")
     this.style["color"] = "#0878af";
   }, function () {
     //handlerOut event
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
   $("i.fa-share").hover(function () {
     //handlerIn event
-    console.log("console log this: ", this)
+    console.log("hover trigger")
     this.style["color"] = "#0878af";
   }, function () {
     //handlerOut event
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   $("i.fa-heart").hover(function () {
     //handlerIn event
-    console.log("console log this: ", this)
+    console.log("hover trigger")
     this.style["color"] = "#0878af";
   }, function () {
     //handlerOut event

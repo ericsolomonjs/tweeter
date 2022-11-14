@@ -5,8 +5,9 @@
  */
 
 const createTweetElement = function (object) {
+  const timeSince = Date.now() - object.created_at;
+
   let fnArticle = '';
-  let timeSince = Date() - object.content.created_at;
   let monthsSince = Math.trunc(timeSince / 1000 / 60 / 60 / 24 / 30);
   let daysSince = Math.trunc(timeSince / 1000 / 60 / 60 / 24);
   let hoursSince = Math.trunc(timeSince / 1000 / 60 / 60);
@@ -14,23 +15,25 @@ const createTweetElement = function (object) {
   let secondsSince = Math.trunc(timeSince / 1000);
 
   let timeString = '';
-
+  console.log("time since: ", timeSince)
   //choose appropriate
   if (monthsSince > 0) {
-  timeString = `Posted ${monthsSince} ago.`;
+  timeString = `Posted ${monthsSince} months ago.`;
   } else
   if (daysSince > 0) {
-  timeString = `Posted ${daysSince} ago.`;
+  timeString = `Posted ${daysSince} days ago.`;
   } else
   if (hoursSince > 0) {
-  timeString = `Posted ${hoursSince} ago.`;
+  timeString = `Posted ${hoursSince} hours ago.`;
   } else
   if (minutesSince > 0) {
-  timeString = `Posted ${minutesSince} ago.`;
+  timeString = `Posted ${minutesSince} minutes ago.`;
   } else
   if (secondsSince > 0) {
-  timeString = `Posted ${secondsSince} ago.`;
+  timeString = `Posted ${secondsSince} seconds ago.`;
   }
+
+  console.log("time string: ", timeString);
         
   //construct the new tweet with imported values
   if (object) {
@@ -39,7 +42,7 @@ const createTweetElement = function (object) {
       <header>
         <div>
           <img src="${object.user.avatars}">
-          <p class="username">${}</p>
+          <p class="username">${object.user.name}</p>
         </div>
         <div>
           <p class="usertag">${object.user.handle}</p>
@@ -67,23 +70,34 @@ const createTweetElement = function (object) {
   return fnArticle;
 }
 
+const renderTweets = function (objArray) {
+  for (let object in objArray) {
+    $("#tweets-area").append(createTweetElement(object));
+  }
+  return;
+}
+
 // Test / driver code (temporary). Eventually will get this from the server.
 const tweetData = {
   "user": {
     "name": "Newton",
     "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
+    "handle": "@SirIsaac"
     },
   "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
+    "text": "If I have seen further it is by standing on the shoulders of giants"
+  },
   "created_at": 1461116232227
 }
 
-const $tweet = createTweetElement(tweetData);
+$(document).ready(() => {
 
-// Test / driver code (temporary)
-console.log($tweet); // to see what it looks like
-$('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+  const $tweet = createTweetElement(tweetData);
+  // Test / driver code (temporary)
+  //console.log($tweet); // to see what it looks like
+  $("#tweets-area").append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
 
-module.exports = {createTweetElement}; 
+})
+
+
+//module.exports = {createTweetElement}; 

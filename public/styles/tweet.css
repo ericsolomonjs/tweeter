@@ -1,5 +1,6 @@
 section.tweet {
   border-style: solid;
+  margin-top: 20px;
 }
 
 article.tweet {
@@ -43,7 +44,7 @@ article.tweet footer div {
 }
 
 article.tweet header div img {
-  max-width: 80px;
+  max-width: 60px;
 }
 
 article.tweet hr {
@@ -56,6 +57,7 @@ p.username {
   display:flex;
   align-self: center;
   justify-self: center;
+  margin-left: 10px;
 }
 
 p.usertag {
