@@ -18,12 +18,14 @@ function updateValue () {
   setCounter('counter', 140 - txtLength);
 };
 
-//on document ready
-$(document).ready(function () {
+function runCharCounter () {
   console.log("the document is ready to be altered")
   const input = document.getElementById('tweet-text');
   input.addEventListener('input', updateValue);
-})
+}
+
+//on document ready
+
 
 
 

@@ -1,4 +1,5 @@
-$(document).ready(function () {
+function createHoverListeners() {
+  console.log("in createHoverListeners")
   $("section.tweet").hover(function () {
     //handlerIn event
     this.style["box-shadow"] = "5px 5px #9d9d9d";
@@ -9,7 +10,6 @@ $(document).ready(function () {
   
   $("i.fa-flag").hover(function () {
     //handlerIn event
-    console.log("hover trigger")
     this.style["color"] = "#0878af";
   }, function () {
     //handlerOut event
@@ -18,7 +18,6 @@ $(document).ready(function () {
 
   $("i.fa-share").hover(function () {
     //handlerIn event
-    console.log("hover trigger")
     this.style["color"] = "#0878af";
   }, function () {
     //handlerOut event
@@ -27,11 +26,9 @@ $(document).ready(function () {
 
   $("i.fa-heart").hover(function () {
     //handlerIn event
-    console.log("hover trigger")
     this.style["color"] = "#0878af";
   }, function () {
     //handlerOut event
     this.style["color"] = "";
   })
-
-})
+}

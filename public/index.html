@@ -21,13 +21,12 @@
     <link rel="stylesheet" href="/styles/tweet.css" type="text/css" />
 
     <!-- External JS (JQuery)-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
     <script type="text/javascript" src="/scripts/tweet-hover.js"></script>
-
 
   </head>
 
@@ -57,6 +56,8 @@
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
+        <div id="error-display">
+        </div>
         <form action="/tweets/" method="POST">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"
           ></textarea>
@@ -66,37 +67,9 @@
           </div>
         </form>
       </section>
-      <container id="tweets-area">
-        <section class="tweet">
-          <article class="tweet">
-            <header >
-              <div>
-                <img src="/images/profile-hex.png">
-                <p class="username">Placeholder user name</p>
-              </div>
-              <div>
-                <p class="usertag">@Placeholder</p>
-              </div>
-            </header>
-            <p class="tweet-content">
-              Placeholder text is holding this tweets place instead of the actual tweet!
-            </p>
-            <hr></hr>
-            <footer>
-              <div>
-                <p class="time-since-posted">10 Days ago</p>
-              </div>
-              <div>
-                <p class="icons">
-                  <i class="fa-solid fa-flag"></i>
-                  <i class="fa-solid fa-share"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </p>
-              </div>
-            </footer>
-          </article>
-        </section>
-      </container>
+      <div id="tweets-area">
+        
+      </div>
     </main>
     <!-- Scripts -->
     

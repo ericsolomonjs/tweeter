@@ -27,6 +27,13 @@ main {
 
 }
 
-.tweet {
-     
+#error-display {
+  display: flex;
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  max-height: 50px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
