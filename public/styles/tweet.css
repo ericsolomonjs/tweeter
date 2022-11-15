@@ -1,10 +1,12 @@
-section.tweet {
+article.tweet {
+  padding: 0.5em;
+  margin: 1em;
   border-style: solid;
   margin-top: 20px;
 }
 
-article.tweet {
-  margin: 2%;
+article.tweet:hover {
+  box-shadow: 5px 5px grey;
 }
 
 article.tweet header {
@@ -81,4 +83,8 @@ p.icons {
   width: 80px;
   color:black;
 
+}
+
+p.icons i:hover {
+  color: red;
 }

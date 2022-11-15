@@ -17,21 +17,22 @@ const createTweetElement = function (object) {
   let timeString = '';
   //choose appropriate
   if (monthsSince > 0) {
-  timeString = `Posted ${monthsSince} months ago.`;
+    timeString = `Posted ${monthsSince} months ago.`;
   } else
   if (daysSince > 0) {
-  timeString = `Posted ${daysSince} days ago.`;
+    timeString = `Posted ${daysSince} days ago.`;
   } else
   if (hoursSince > 0) {
-  timeString = `Posted ${hoursSince} hours ago.`;
+    timeString = `Posted ${hoursSince} hours ago.`;
   } else
   if (minutesSince > 0) {
-  timeString = `Posted ${minutesSince} minutes ago.`;
+    timeString = `Posted ${minutesSince} minutes ago.`;
   } else
   if (secondsSince > 0) {
-  timeString = `Posted ${secondsSince} seconds ago.`;
+    timeString = `Posted ${secondsSince} seconds ago.`;
+  } else {
+    timeString = `Posted 0 seconds ago.`;
   }
-
 
   if (object.user.avatars == '') {
     object.user.avatars = "https://i.imgur.com/nlhLi3I.png";
@@ -39,7 +40,7 @@ const createTweetElement = function (object) {
 
   //construct the new tweet with imported values
   if (object) {
-    fnArticle = `<section class="tweet">
+    fnArticle = `
     <article class="tweet">
       <header>
         <div>
@@ -67,13 +68,13 @@ const createTweetElement = function (object) {
         </div>
       </footer>
     </article>
-  </section>`;
+  `;
   }
   return fnArticle;
 }
 
 const renderTweets = function (objArray) {
-  $("section.tweet").replaceWith();
+  $("article.tweet").replaceWith();
   for (let object of objArray) {
     $("#tweets-area").append(createTweetElement(object));
   }
@@ -88,20 +89,13 @@ const loadTweets = function () {
     console.log(data);
     renderTweets(data);
   })
-
 };
 
 $(document).ready(() => {
   //load tweets on page load  
   loadTweets();
-
   //initialise the char counter
   runCharCounter();
-
-  //create hover event listeners
-  console.log("before creating hover listeners in document ready")
-  createHoverListeners();
-  
   //submit tweet logic
   $("form").submit(function (event) {
     event.preventDefault();
@@ -112,12 +106,10 @@ $(document).ready(() => {
       errorBox.innerHTML = "<p>Your text is too long for a tweet!</p>";
       console.log(errorBox);
       $("#error-display").slideDown("fast");
-      
     } else if (data.length == 5) {
       console.log(data.length);
       errorBox.innerHTML = "<p>Please enter text in the tweet box!</p>";
       $("#error-display").slideDown("fast");
-
     } else if (5 < data.length && data.length < 145) {
       console.log(data.length);
       console.log("[post condition entered]: ");
@@ -127,6 +119,5 @@ $(document).ready(() => {
         loadTweets();
       })
     }
-
   })
 })
