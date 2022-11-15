@@ -24,7 +24,6 @@ function runCharCounter () {
   input.addEventListener('input', updateValue);
 }
 
-//on document ready
 
 
 
