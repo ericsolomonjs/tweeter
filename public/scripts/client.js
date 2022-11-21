@@ -4,72 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const createTweetElement = function (object) {
-  const timeSince = Date.now() - object.created_at;
-
-  let fnArticle = '';
-
-  //call getTimeString to create the time since posted string
-  const timeString = getTimeString(timeSince);
-  
-
-  if (object.user.avatars == '') {
-    object.user.avatars = "https://i.imgur.com/nlhLi3I.png";
-  }
-
-  //construct the new tweet with imported values
-  if (object) {
-    fnArticle = `
-    <article class="tweet">
-      <header>
-        <div>
-          <img src="${object.user.avatars}">
-          <p class="username">${object.user.name}</p>
-        </div>
-        <div>
-          <p class="usertag">${object.user.handle}</p>
-        </div>
-      </header>
-      <p class="tweet-content">
-        ${object.content.text}
-      </p>
-      <hr></hr>
-      <footer>
-        <div>
-          <p class="time-since-posted">${timeString}</p>
-        </div>
-        <div>
-          <p class="icons">
-            <i class="fa-solid fa-flag"></i>
-            <i class="fa-solid fa-share"></i>
-            <i class="fa-solid fa-heart"></i>
-          </p>
-        </div>
-      </footer>
-    </article>
-  `;
-  }
-  return fnArticle;
-}
-
-const renderTweets = function (objArray) {
-  $("article.tweet").replaceWith();
-  for (let object of objArray) {
-    $("#tweets-area").append(createTweetElement(object));
-  }
-  return;
-}
-
-const loadTweets = function () {
-  $.get('/tweets/', (data) => {
-    console.log('Success: ', data);
-    // fnData = data;
-  }).done((data) => {
-    console.log(data);
-    renderTweets(data);
-  })
-};
-
 $(document).ready(() => {
   //load tweets on page load  
   loadTweets();
@@ -81,22 +15,23 @@ $(document).ready(() => {
     $("#error-display").slideUp("fast");
     let data = $("form").serialize();
     const errorBox =  document.getElementById("error-display");
+    //detect & handle incorrect data length errors
     if (data.length > 145) {
       errorBox.innerHTML = "<p>Your text is too long for a tweet!</p>";
-      console.log(errorBox);
       $("#error-display").slideDown("fast");
     } else if (data.length == 5) {
-      console.log(data.length);
       errorBox.innerHTML = "<p>Please enter text in the tweet box!</p>";
       $("#error-display").slideDown("fast");
-    } else if (5 < data.length && data.length < 145) {
-      console.log(data.length);
-      console.log("[post condition entered]: ");
+    } 
+    //submit correct tweet and reset form
+    else if (5 < data.length && data.length < 145) {
       errorBox.innerHTML = "";
       $.post("/tweets/", data, function () {
         event.preventDefault();
         loadTweets();
       })
+      //reset form
+      $("form").trigger("reset");
     }
   })
 })
