@@ -1,10 +1,10 @@
 const createTweetElement = function (object) {
   const timeSince = Date.now() - object.created_at;
-
+  const timeString = getTimeString(timeSince);
   let fnArticle = '';
 
   //call getTimeString to create the time since posted string
-  const timeString = getTimeString(timeSince);
+  
   
 
   if (!object.user.avatars) {

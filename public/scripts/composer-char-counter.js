@@ -1,5 +1,5 @@
 function setCounter(name, value) {
-  let target = document.getElementsByClassName(name);
+  const target = document.getElementsByClassName(name);
   target[name].value = value;
   console.log(target);
   if (target[name].value < 0) {
